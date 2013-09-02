@@ -1,0 +1,35 @@
+ .navigation{
+ 	display:inline-block;
+ 	overflow:hidden;
+	border-radius: 4px;
+	box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+	padding-left:0;
+	margin-left:3em;
+
+	li {
+	 	background-image: linear-gradient(#FFFFFF 0%, #8ADD91 50%, #61D85C 51%);
+	 	float:left;
+	 	list-style: none;
+	 	border-right: 1px solid rgba(9,9,9,0.125);
+	 	box-shadow: 1px -1px 0 rgba(255, 255, 255, 0.6) inset;
+	 	position:relative;
+	 	&.current,&:hover{
+	 		background-image: linear-gradient(white 0%, #51DB5C 50%, #55C751 51%);
+	 	}
+	 	a {
+	 		padding: 12px 35px 14px;
+			display:inline-block;
+			&:hover{
+				background-color:transparent;
+			}
+	 	}
+	 	&.current{
+	 		pointer-events:none;
+			cursor:default;
+			a{
+				color:rgba(102, 102, 102, 0.76);
+				text-decoration:none;
+			}
+	 	}
+	 }
+ }
