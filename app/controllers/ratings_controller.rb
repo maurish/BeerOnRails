@@ -1,5 +1,8 @@
 class RatingsController < ApplicationController
 	before_action :set_rating, only: []
+	def index
+		@ratings = Rating.all
+	end
 	private
 	def set_rating
 		@rating = Rating.find(params[:id])
