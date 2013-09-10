@@ -14,6 +14,9 @@ group :production do
    gem 'rails_12factor' 
 end
 
+# Use debugger on development enviroment
+gem 'debugger', group: :development
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -38,6 +41,11 @@ gem 'jbuilder', '~> 1.2'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+#Explicitly define webrick to remove some WARNs
+group :development do
+  gem 'webrick', '~> 1.3.1'
 end
 
 # Use ActiveModel has_secure_password
