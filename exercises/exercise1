@@ -1,0 +1,27 @@
+Loading development environment (Rails 4.0.0)
+irb(main):001:0> Brewery.create name: 'Brewdog', year: 2007
+   (0.1ms)  begin transaction
+  SQL (6.5ms)  INSERT INTO "breweries" ("created_at", "name", "updated_at", "year") VALUES (?, ?, ?, ?)  [["created_at", Tue, 10 Sep 2013 15:50:02 UTC +00:00], ["name", "Brewdog"], ["updated_at", Tue, 10 Sep 2013 15:50:02 UTC +00:00], ["year", 2007]]
+   (0.7ms)  commit transaction
+=> #<Brewery id: 4, name: "Brewdog", year: 2007, created_at: "2013-09-10 15:50:02", updated_at: "2013-09-10 15:50:02">
+irb(main):002:0> bre = Brewery.find(4)
+  Brewery Load (0.3ms)  SELECT "breweries".* FROM "breweries" WHERE "breweries"."id" = ? LIMIT 1  [["id", 4]]
+=> #<Brewery id: 4, name: "Brewdog", year: 2007, created_at: "2013-09-10 15:50:02", updated_at: "2013-09-10 15:50:02">
+irb(main):003:0> bre
+=> #<Brewery id: 4, name: "Brewdog", year: 2007, created_at: "2013-09-10 15:50:02", updated_at: "2013-09-10 15:50:02">
+irb(main):004:0> bre.beers
+  Beer Load (0.1ms)  SELECT "beers".* FROM "beers" WHERE "beers"."brewery_id" = ?  [["brewery_id", 4]]
+=> #<ActiveRecord::Associations::CollectionProxy []>
+irb(main):005:0> bre.beers.create name:'Punk IPA', style: 'IPA'
+   (0.1ms)  begin transaction
+  SQL (1.0ms)  INSERT INTO "beers" ("brewery_id", "created_at", "name", "style", "updated_at") VALUES (?, ?, ?, ?, ?)  [["brewery_id", 4], ["created_at", Tue, 10 Sep 2013 15:52:33 UTC +00:00], ["name", "Punk IPA"], ["style", "IPA"], ["updated_at", Tue, 10 Sep 2013 15:52:33 UTC +00:00]]
+   (2.9ms)  commit transaction
+=> #<Beer id: 8, name: "Punk IPA", style: "IPA", brewery_id: 4, created_at: "2013-09-10 15:52:33", updated_at: "2013-09-10 15:52:33">
+irb(main):006:0> bre.beers.create name:'Nanny State', style: 'lowalcohol'
+   (0.1ms)  begin transaction
+  SQL (1.3ms)  INSERT INTO "beers" ("brewery_id", "created_at", "name", "style", "updated_at") VALUES (?, ?, ?, ?, ?)  [["brewery_id", 4], ["created_at", Tue, 10 Sep 2013 15:53:10 UTC +00:00], ["name", "Nanny State"], ["style", "lowalcohol"], ["updated_at", Tue, 10 Sep 2013 15:53:10 UTC +00:00]]
+   (2.0ms)  commit transaction
+=> #<Beer id: 9, name: "Nanny State", style: "lowalcohol", brewery_id: 4, created_at: "2013-09-10 15:53:10", updated_at: "2013-09-10 15:53:10">
+irb(main):007:0> bre.beers
+=> #<ActiveRecord::Associations::CollectionProxy [#<Beer id: 8, name: "Punk IPA", style: "IPA", brewery_id: 4, created_at: "2013-09-10 15:52:33", updated_at: "2013-09-10 15:52:33">, #<Beer id: 9, name: "Nanny State", style: "lowalcohol", brewery_id: 4, created_at: "2013-09-10 15:53:10", updated_at: "2013-09-10 15:53:10">]>
+irb(main):008:0> 
