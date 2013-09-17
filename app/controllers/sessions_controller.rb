@@ -1,10 +1,10 @@
 class SessionsController < ApplicationController
+	before_action :set_user, only:[:create] 
 
 	def new
 	end
 
 	def create
-		set_user
 		session[:user_id] = @user.id if not @user.nil?
 		redirect_to user_path(@user)
 	end
