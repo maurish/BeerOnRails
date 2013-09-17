@@ -11,6 +11,7 @@ class RatingsController < ApplicationController
 
 	def create 
 		@rating = Rating.create(rating_params)
+		session[:last_rating] = "#{@rating.beer} #{@rating.score} points"
 		if @rating.save
 			redirect_to ratings_path
 		end
