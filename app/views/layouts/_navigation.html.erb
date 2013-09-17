@@ -4,8 +4,10 @@
 	<%= nav_link 'Ratings', ratings_path %>
 	<%= nav_link 'Users', users_path %>
 	<% if current_user.nil? %>
-		<%= nav_link 'Log In', 'signin' %>
+		<%= nav_link 'Log In', '/signin' %>
 	<% else %>
-		<%= nav_link 'Log Out', 'signout', :delete %>
+		<%= nav_link 'Rate a beer', new_rating_path %>
+		<%= nav_link 'Log Out', '/signout', :delete %>
+		<%= nav_link current_user, user_path(current_user) %>
 	<% end %>
 </ul>
