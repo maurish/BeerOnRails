@@ -1,0 +1,11 @@
+<ul class="navigation">
+	<%= nav_link 'Breweries' , breweries_path %>
+	<%= nav_link 'Beers' , beers_path %>
+	<%= nav_link 'Ratings', ratings_path %>
+	<%= nav_link 'Users', users_path %>
+	<% if current_user.nil? %>
+		<%= nav_link 'Log In', 'signin' %>
+	<% else %>
+		<%= nav_link 'Log Out', 'signout', :delete %>
+	<% end %>
+</ul>

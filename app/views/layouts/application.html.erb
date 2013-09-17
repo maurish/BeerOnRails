@@ -8,17 +8,11 @@
 </head>
 <body>
 <nav>
-	<ul class="navigation">
-		<%= nav_link 'Breweries' , breweries_path %>
-		<%= nav_link 'Beers' , beers_path %>
-		<%= nav_link 'Ratings', ratings_path %>
-	</ul>
+	<%= render 'layouts/navigation'%>
 </nav>
 <%= yield %>
-<% if session[:last_rating].nil? %>
-  <p>no ratings given</p>
-<% else %>
-  <p>previous rating: <%= session[:last_rating] %></p>
+<% if not current_user.nil? %>
+  <p><%= current_user.username %> signed in</p>
 <% end %>
 </body>
 </html>
