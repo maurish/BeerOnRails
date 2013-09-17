@@ -9,10 +9,15 @@ b1 = Brewery.create :name => "Koff", :year => 1897
 b2 = Brewery.create :name => "Malmgard", :year => 2001
 b3 = Brewery.create :name => "Weihenstephaner", :year => 1042
 
-b1.beers.create :name => "Iso 3", :style => "Lager"
-b1.beers.create :name => "Karhu", :style => "Lager"
-b1.beers.create :name => "Tuplahumala", :style => "Lager"
-b2.beers.create :name => "Huvila Pale Ale", :style => "Pale Ale"
-b2.beers.create :name => "X Porter", :style => "Porter"
-b3.beers.create :name => "Hefezeizen", :style => "Weizen"
-b3.beers.create :name => "Helles", :style => "Lager"
+beer1_1 = b1.beers.create :name => "Iso 3", :style => "Lager"
+beer1_2 = b1.beers.create :name => "Karhu", :style => "Lager"
+beer1_3 = b1.beers.create :name => "Tuplahumala", :style => "Lager"
+beer2_1 = b2.beers.create :name => "Huvila Pale Ale", :style => "Pale Ale"
+beer2_2 = b2.beers.create :name => "X Porter", :style => "Porter"
+beer3_1 = b3.beers.create :name => "Hefezeizen", :style => "Weizen"
+beer3_2 = b3.beers.create :name => "Helles", :style => "Lager"
+
+s1 = beer1_1.ratings.create :score => 100
+s2 = beer1_2.ratings.create :score => 75
+s3 = beer2_1.ratings.create :score => 50
+s4 = beer2_1.ratings.create :score => 61
