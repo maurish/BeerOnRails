@@ -3,11 +3,14 @@
 	<%= nav_link 'Beers' , beers_path %>
 	<%= nav_link 'Ratings', ratings_path %>
 	<%= nav_link 'Users', users_path %>
+	<%= nav_link 'Clubs', beer_clubs_path %>
 	<% if current_user.nil? %>
 		<%= nav_link 'Log In', '/signin' %>
+		<%= nav_link 'Register', '/signup' %>
 	<% else %>
 		<%= nav_link 'Rate a beer', new_rating_path %>
-		<%= nav_link 'Log Out', '/signout', :delete %>
+		<%= nav_link 'Join a club', new_membership_path %>
+		<%= nav_link 'Log Out', '/signout', :method => :delete %>
 		<%= nav_link current_user, user_path(current_user) %>
 	<% end %>
 </ul>
