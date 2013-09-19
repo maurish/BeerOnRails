@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		if @user.nil? or not @user.authenticate "password"
+		if @user.nil? or not @user.authenticate user_params[:password]
 			redirect_to :back, alert: "Username or password Incorrect"
 		else
 			session[:user_id] = @user.id if not @user.nil?
