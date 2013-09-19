@@ -2,15 +2,15 @@ class SessionsController < ApplicationController
 	before_action :set_user, only:[:create] 
 
 	def new
+		@user = User.new
 	end
 
 	def create
-		name = params[:username]
-		if (@user.nil?)
-			redirect_to :back, notice: "User with name #{name} does not exists"
+		if @user.nil? or not @user.authenticate "password"
+			redirect_to :back, alert: "Username or password Incorrect"
 		else
 			session[:user_id] = @user.id if not @user.nil?
-			redirect_to user_path(@user), notice: "Welcome back #{name}"
+			redirect_to user_path(@user), notice: "Welcome back #{@user.username}"
 		end
 	end
 
@@ -20,7 +20,11 @@ class SessionsController < ApplicationController
 	end
 
 	private
+	def user_params
+		params.require(:user).permit(:username, :password)
+	end
+
 	def set_user
-		@user = User.find_by_username params[:username]
+		@user = User.find_by_username user_params[:username]
 	end
 end
