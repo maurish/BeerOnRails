@@ -10,7 +10,7 @@ class RatingsController < ApplicationController
 	end
 
 	def create 
-		return redirect_to :back if current_user.nil? 
+		return redirect_to :back, notice: "You need to be logged in to rate" if current_user.nil? 
 		@rating = Rating.create(rating_params)
 		current_user.ratings << @rating 
 		session[:last_rating] = "#{@rating.beer} #{@rating.score} points"
