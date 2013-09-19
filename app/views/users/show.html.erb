@@ -1,6 +1,40 @@
+ <p>
   <strong>Username:</strong>
   <%= @user.username %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<p>
+	<% if @user.ratings.empty? %>
+	 You haven't rated any beers yet, go <%= link_to 'rate', new_rating_path%> one!
+	<% else %>
+	 You have rated total of <%= pluralize @user.ratings.size, 'rating' %>, with average of <%= @user.average_rating %>
+<% end %>
+</p>
+
+<h2>Your ratings: </h2>
+<ul>
+	<% @user.ratings.each do |rating| %>
+		<li>
+			<%= rating %> 
+			<% if current_user == @user %>
+				<%= link_to "delete", rating, :method => :delete, :data => {confirm: "You are about to destroy rating #{rating} Are you sure?"}%>
+			<% end %>
+		</li>
+	<% end %>
+</ul>
+
+<div>
+	<h2>Clubs you belong </h2>
+	<ul>
+		
+		<% @user.beer_clubs.each do |club| %>
+			<li><%= link_to club, club %></li>
+		<% end %>
+	</ul>
+</div>
+<% if current_user == @user %>
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+	<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
+
 <%= link_to 'Back', users_path %>
