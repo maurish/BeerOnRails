@@ -16,6 +16,9 @@ class RatingsController < ApplicationController
 		session[:last_rating] = "#{@rating.beer} #{@rating.score} points"
 		if @rating.save
 			redirect_to ratings_path
+		else
+			@beers = Beer.all
+			render :new
 		end
 	end
 
