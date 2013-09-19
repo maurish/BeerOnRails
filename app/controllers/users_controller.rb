@@ -40,8 +40,6 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-
-
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -71,7 +69,7 @@ class UsersController < ApplicationController
     end
 
   def check_priviliges
-    redirect_to :back, alert: "You don't have enough priviliges to do that" unless @user==current_user
+    redirect_to :back, alert: "You don't have enough priviliges to do that" unless currently_signed_in? @user
   end
 
     # Never trust parameters from the scary internet, only allow the white list through.

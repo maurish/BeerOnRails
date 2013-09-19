@@ -20,7 +20,7 @@ class RatingsController < ApplicationController
 	end
 
 	def destroy
-		if @rating.user == current_user
+		if currently_signed_in? @rating.user
 			@rating.destroy
 			redirect_to :back, notice: "Rating successfully destroyed"	
 		else
