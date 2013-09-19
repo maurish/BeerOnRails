@@ -5,20 +5,22 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		session[:user_id] = @user.id if not @user.nil?
-		redirect_to user_path(@user)
+		name = params[:username]
+		if (@user.nil?)
+			redirect_to :back, notice: "User with name #{name} does not exists"
+		else
+			session[:user_id] = @user.id if not @user.nil?
+			redirect_to user_path(@user), notice: "Welcome back #{name}"
+		end
 	end
 
 	def destroy
 		reset_session
-		redirect_to :root
+		redirect_to :root, notice: "You have succesfully logged out"
 	end
 
 	private
 	def set_user
 		@user = User.find_by_username params[:username]
-	end
-	def user_params
-		params.require(:user).permit(:username)
 	end
 end
