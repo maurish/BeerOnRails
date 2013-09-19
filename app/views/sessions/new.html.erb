@@ -1,7 +1,11 @@
 <h1>Sign in</h1>
 
 <%= form_for @user , :url => {action: "create"} do |f| %>
-  <%= f.text_field :username , placeholder: "username"%>
-  <%= f.text_field :password , placeholder: "password"%>
+	<div class="field">
+  		<%= f.text_field :username , placeholder: "username"%>
+ 	</div>
+ 	<div class="field">
+ 		 <%= f.password_field :password , placeholder: "password"%>
+ 	</div>
   <%= f.submit "Log in" %>
 <% end %>
