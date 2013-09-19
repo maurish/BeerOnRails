@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 
+	validates :username, uniqueness: true, length: {minimum: 3, maximum: 15}
+	validates :password, length:{minimum: 4}, format: {with: /[^A-Za-z]/, message: "Password must contain atleast 1 non-letter character"}
+	validate :prevent_future
+
+
 	include Average
 
 	def to_s
