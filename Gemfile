@@ -54,5 +54,10 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
+# Use rspec as testing framework
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+end
+
 # Use debugger
 gem 'debugger', group: [:development, :test]
