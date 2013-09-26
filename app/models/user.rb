@@ -13,7 +13,9 @@ class User < ActiveRecord::Base
 
 	include Average
 
-	
+	def favorite_beer
+		
+	end
 
 	def to_s
 		"#{username}"

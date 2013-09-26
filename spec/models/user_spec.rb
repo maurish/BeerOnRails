@@ -14,7 +14,7 @@ describe User do
 	end
 
 	describe 'with proper password' do 
-		let(:user){User.create username:"pekka", password:"secret1", password_confirmation:"secret1" }
+		let(:user){FactoryGirl.create :user}
 		
 
 		it 'is saved' do
@@ -34,19 +34,29 @@ describe User do
 	    end
 	end
 
-	describe 'user is not saved when password' do 
-		it 'is too short' do 
+	describe 'is not saved with password being' do 
+		it 'too short' do 
 			user = User.create username: 'pekka', password: 's1', password_confirmation:'s1'
 
 			expect(user.valid?).to eq false
 			expect(User.count).to eq 0
 		end
 
-		it 'only contains letters' do 
+		it 'only composed of letters' do 
 			user = User.create username:'pekka', password: "secret", password_confirmation:"secret"
 
 			expect(user.valid?).to eq false
 			expect(User.count).to eq 0
 		end
 	end 
+	describe "favorite beer" do 
+		let (:user) {FactoryGirl.create :user}
+		it "has method for determining one" do
+			user.should respond_to :favorite_beer
+		end
+
+		it "has no without any given ratings" do 
+			expect(user.favorite_beer).to eq nil 
+		end
+	end
 end
