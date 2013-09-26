@@ -59,5 +59,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
 end
 
+# Generate fixtures to tests with Factory Girl
+group :test do
+  gem 'factory_girl_rails'
+end
+
 # Use debugger
 gem 'debugger', group: [:development, :test]
