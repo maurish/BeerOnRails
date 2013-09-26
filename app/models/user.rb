@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
 	include Average
 
+	
+
 	def to_s
 		"#{username}"
 	end
