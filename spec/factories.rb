@@ -16,6 +16,10 @@ FactoryGirl.define do
     style "Lager"
   end
 
+  factory :rating do
+    score 10
+  end
+
   factory :rating1, :class => Rating do
     score 10
   end

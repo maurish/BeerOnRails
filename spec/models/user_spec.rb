@@ -49,14 +49,75 @@ describe User do
 			expect(User.count).to eq 0
 		end
 	end 
-	describe "favorite beer" do 
-		let (:user) {FactoryGirl.create :user}
+
+	describe "favorite beer" do
+		let(:user){FactoryGirl.create :user }
+
 		it "has method for determining one" do
 			user.should respond_to :favorite_beer
 		end
 
-		it "has no without any given ratings" do 
-			expect(user.favorite_beer).to eq nil 
+		it "without ratings does not have one" do
+			expect(user.favorite_beer).to eq nil
 		end
+
+		it "is the only rated if only one rating" do
+			beer = create_beer_with_rating 10, user
+
+			expect(user.favorite_beer).to eq beer 
+		end
+
+		it "is the one with highest rating if several rated" do
+			create_beers_with_ratings 10, 20, 15, 7, 9, user
+			best = create_beer_with_rating 25, user
+
+			expect(user.favorite_beer).to eq best 
+		end		
+	end
+
+	describe 'favorite style' do 
+		let(:user){FactoryGirl.create :user}
+		it 'has method for determining one' do
+			user.should respond_to :favorite_style
+		end
+
+		it 'without ratings does not have one' do 
+			expect(user.favorite_style).to eq nil
+		end
+
+		it 'is the style of the beer if only one rating' do 
+			beer = create_beer_with_rating 10, user
+			expect(user.favorite_style).to eq beer.style
+		end
+
+		it 'is the style of the highest average mapped by style' do
+			create_beers_with_ratings_and_style 10,15,25, user, 'Lager'
+			beer = create_beer_with_rating_and_style 30, user, 'Pale Ale'
+			expect(user.favorite_style).to eq beer.style
+		end
+	end
+
+	def create_beers_with_ratings_and_style *scores, user, style
+		scores.each do |score|
+			create_beer_with_rating_and_style score, user, style
+		end
+	end
+
+	def create_beer_with_rating_and_style score, user, style
+		beer = FactoryGirl.create :beer, style:style
+		FactoryGirl.create :rating, beer:beer, user:user, score:score
+		beer
+	end
+
+	def create_beers_with_ratings(*scores, user)
+		scores.each do |score|
+			create_beer_with_rating score, user
+		end
+	end
+
+	def create_beer_with_rating(score,  user)
+		beer = FactoryGirl.create :beer
+		FactoryGirl.create :rating, score: score,  beer: beer, user: user 
+		beer
 	end
 end

@@ -14,7 +14,13 @@ class User < ActiveRecord::Base
 	include Average
 
 	def favorite_beer
-		
+		return nil if ratings.empty?
+		ratings.sort_by{|r| -r.score}.first.beer
+	end
+
+	def favorite_style
+		return nil if ratings.empty?
+		ratings.map{|r| style:r.beer.style, score:r.score}.reduce({}){|mem, item| }
 	end
 
 	def to_s
