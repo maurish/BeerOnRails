@@ -1,5 +1,8 @@
 module Average
 	def average_rating
-		self.ratings.map{|rating| rating.score}.reduce(:+).to_f / self.ratings.count
+		average self.ratings, :score
+	end
+	def average collection, key = nil
+		collection.map{|v| key.nil? ? v : v[key]}.reduce(:+).to_f / collection.count
 	end
 end
