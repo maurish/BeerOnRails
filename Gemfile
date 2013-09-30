@@ -64,13 +64,15 @@ end
 
 # Generate fixtures to tests with Factory Girl
 group :test do
+  # fixtures in tests
   gem 'factory_girl_rails'
+  # Headless browser testing
   gem 'capybara'
   gem 'launchy'
+  # Coverage
+  gem 'simplecov', :require => false
 end
 
-# Use simplecov as 
-gem 'simplecov', :require => false
 
 # Use debugger
 gem 'debugger', group: [:development, :test]
