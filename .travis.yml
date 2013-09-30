@@ -1,10 +1,15 @@
 language: ruby
-
 rvm:
- - 2.0.0
-
+- 2.0.0
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -f d spec/
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -f d spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: pWrbJvzKbBenrrUkkQTuzG4T1eGagfJvhBo782DOxyscetGQLOcNF1VO/f39l0SeuNMVSWESbhXukHYcNbb3zkOelcASJUzovpkYvE+32aUv7/QpK/RlmCE0B+SFzcmxn2Hso2m4M7NRTXWKp1LivDDgGVSBdmNWGTR4K5Buayg=
+  app: fast-bastion-5540
+  on:
+    repo: maurish/BeerOnRails
