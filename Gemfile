@@ -3,12 +3,12 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use sqlite3 as the database for Active Record if in either development or test environment
+# Use sqlite3 as the database for Active Record in development and test environment
 group :development, :test do
   gem 'sqlite3'
 end
 
-# Use postGreSQL as the database for Active Record if in the production enviroment
+# Use postGreSQL as the database for Active Record in production enviroment
 group :production do
    gem 'pg'
    gem 'rails_12factor' 
@@ -40,7 +40,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-#Explicitly define webrick to remove some WARNs
+# Use webrick as development server
 group :development do
   gem 'webrick', '~> 1.3.1'
 end
@@ -54,6 +54,9 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
+
+# Testing libraries
+
 # Use rspec as testing framework
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
@@ -62,7 +65,12 @@ end
 # Generate fixtures to tests with Factory Girl
 group :test do
   gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'launchy'
 end
+
+# Use simplecov as 
+gem 'simplecov', :require => false
 
 # Use debugger
 gem 'debugger', group: [:development, :test]
