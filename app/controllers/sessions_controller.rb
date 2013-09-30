@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
 	def create
 		if @user.nil? or not @user.authenticate user_params[:password]
-			redirect_to :back, alert: "Username or password Incorrect"
+			redirect_to :back, notice: "username and password did not match"
 		else
 			session[:user_id] = @user.id if not @user.nil?
 			redirect_to user_path(@user), notice: "Welcome back #{@user.username}"
