@@ -13,15 +13,22 @@ class User < ActiveRecord::Base
 
 	include Average
 
+	def favorite &block
+		return nil if ratings.empty?
+		average_rating(&block)
+	end
+
 	
 	def favorite_beer
-		return nil if ratings.empty?
-		ratings.sort_by{|r| r.score}.last.beer
+		favorite {|r| r.beer}
 	end
 
 	def favorite_style
-		return nil if ratings.empty?
-		ratings.group_by{|r| r.beer.style}.to_a.sort_by{|s| average(s[1], :score)}.last[0]
+		favorite {|r| r.beer.style}
+	end
+
+	def favorite_brewery
+		favorite {|r| r.beer.brewery}
 	end
 
 	def to_s
