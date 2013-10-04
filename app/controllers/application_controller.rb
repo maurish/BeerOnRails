@@ -12,5 +12,9 @@ class ApplicationController < ActionController::Base
 	def currently_signed_in?(user)
 		user == current_user
 	end
+
+	def ensure_that_signed_in
+		redirect_to signin_path, notice: "You need to be logged in to do that!" unless current_user
+	end
   
 end
