@@ -5,8 +5,10 @@ describe "Rating" do
     let!(:user) { FactoryGirl.create :user }
     let!(:brewery1) { FactoryGirl.create :brewery, :name => "Koff" }
     let!(:brewery2) {FactoryGirl.create :brewery, name:"Karjala"}
-    let!(:beer1) { FactoryGirl.create :beer, :name => "iso 3", :brewery => brewery1, style:'Lager' }
-    let!(:beer2) { FactoryGirl.create :beer, :name => "Karhu", :brewery => brewery2, style:'Pale Ale' }
+    let!(:style1){FactoryGirl.create :style, title:'Lager'}
+    let!(:style2){FactoryGirl.create :style, title:'Pale Ale'}
+    let!(:beer1) { FactoryGirl.create :beer, :name => "iso 3", :brewery => brewery1, style:style1 }
+    let!(:beer2) { FactoryGirl.create :beer, :name => "Karhu", :brewery => brewery2, style:style2 }
     before :each do
         sign_in user.username, user.password
     end
@@ -32,10 +34,10 @@ describe "Rating" do
             expect(beer1.average_rating).to eq(15.0)
         end
 
-    describe 'when ratings have been given' do 
+    describe 'when ratings have been given' do
         include OwnTestHelper
-        
-        before :each do 
+
+        before :each do
             @rating1 = FactoryGirl.create :rating, user:user, beer:beer1, score:10
             @rating2 = FactoryGirl.create :rating, user:user, beer:beer2, score:20
         end
@@ -50,7 +52,7 @@ describe "Rating" do
         end
 
 
-        it 'shows all ratings given in the user page' do 
+        it 'shows all ratings given in the user page' do
             visit user_path user
             user.ratings.each do |r|
                 expect(page).to have_content r.score
@@ -64,7 +66,7 @@ describe "Rating" do
             expect{
                 find("#rating-#{@rating1.id}").find('a').click()
             }.to change{user.ratings.count}.by(-1)
-            
+
             expect(page).to have_content 'Rating successfully destroyed'
             expect(page).not_to have_content @rating1.score
             expect(page).not_to have_content @rating1.beer.name
@@ -75,12 +77,12 @@ describe "Rating" do
         end
 
 
-        it 'shows favorite style at the user page' do 
+        it 'shows favorite style at the user page' do
             visit user_path user
             expect(page).to have_content 'favorite style is: Pale Ale'
         end
 
-        it 'shows favorite brewery at the user page' do 
+        it 'shows favorite brewery at the user page' do
             visit user_path user
             expect(page).to have_content 'favorite brewery is: Karjala'
         end

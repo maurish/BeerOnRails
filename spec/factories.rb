@@ -5,15 +5,19 @@ FactoryGirl.define do
     password_confirmation "foobar1"
   end
 
-  factory :brewery do 
+  factory :brewery do
     year 1900
     name 'anynomous'
   end
 
   factory :beer do
-    brewery 
+    brewery
     name "anynomous"
-    style "Lager"
+    style
+  end
+
+  factory :style do
+  	sequence(:title) {|x|"style#{x}"}
   end
 
   factory :rating do
