@@ -10,7 +10,7 @@ Ratebeer::Application.routes.draw do
   resources :beers
 
   resources :breweries
- 
+
   resources :ratings, only: [:index, :new, :create, :destroy]
 
   resources :users
@@ -24,6 +24,10 @@ Ratebeer::Application.routes.draw do
   get 'signin', to: 'sessions#new'
 
   delete 'signout', to: 'sessions#destroy'
+
+  get 'places', to: 'places#index'
+
+  post 'places', to:'places#search'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -65,7 +69,7 @@ Ratebeer::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
