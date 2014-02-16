@@ -10,6 +10,7 @@ class BeersController < ApplicationController
   # GET /beers/1
   # GET /beers/1.json
   def show
+  	@rating = Rating.new(beer:@beer)
   end
 
   # GET /beers/new
@@ -21,6 +22,8 @@ class BeersController < ApplicationController
 
   # GET /beers/1/edit
   def edit
+  	@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+  	@breweries = Brewery.all
   end
 
   # POST /beers
@@ -49,6 +52,8 @@ class BeersController < ApplicationController
         format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }
         format.json { head :no_content }
       else
+      	@breweries = Brewery.all
+        @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
         format.html { render action: 'edit' }
         format.json { render json: @beer.errors, status: :unprocessable_entity }
       end

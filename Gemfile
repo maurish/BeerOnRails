@@ -20,6 +20,9 @@ gem 'sass-rails', '~> 4.0.0'
 # use HttParty to use external API's
 gem 'httparty'
 
+# Use cached settings to use API keys etc
+gem "rails-settings-cached", "0.3.1"
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

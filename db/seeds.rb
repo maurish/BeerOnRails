@@ -13,10 +13,10 @@ c1 = BeerClub.create name: "Ruotsalainen Kaljakerho", city: "Vantaa", founded: 1
 c2 = BeerClub.create name: "HYY Oluen Ystävät", city: "Helsinki", founded: 2000
 c3 = BeerClub.create name: "Suuri Suomalainen Kaljakerho", city: "Turku ", founded: 1995
 
-u1 = User.create username: "mauri", password: "pauli", password_confirmation: "pauli"
-u2 = User.create username: "mluukkai", password: "matti", password_confirmation: "matti"
-u3 = User.create username: "avihavai", password: "arto", password_confirmation: "arto"
-u4 = User.create username: "Paula", password: "paula", password_confirmation: "paula"
+u1 = User.create username: "mauri", password: "pauli1", password_confirmation: "pauli1"
+u2 = User.create username: "mluukkai", password: "matti1", password_confirmation: "matti1"
+u3 = User.create username: "avihavai", password: "arto1", password_confirmation: "arto1"
+u4 = User.create username: "Paula", password: "paula1", password_confirmation: "paula1 "
 
 beer1_1 = b1.beers.create :name => "Iso 3", :style => "Lager"
 beer1_2 = b1.beers.create :name => "Karhu", :style => "Lager"
