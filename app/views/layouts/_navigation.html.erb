@@ -1,17 +1,19 @@
-<ul class="navigation">
-	<%= nav_link 'Breweries' , breweries_path %>
-	<%= nav_link 'Beers' , beers_path %>
-	<%= nav_link 'Ratings', ratings_path %>
-	<%= nav_link 'Users', users_path %>
-	<%= nav_link 'Clubs', beer_clubs_path %>
-	<%= nav_link 'Places', places_path %>
-	<% if current_user.nil? %>
-		<%= nav_link 'Log In', '/signin' %>
-		<%= nav_link 'Register', '/signup' %>
-	<% else %>
-		<%= nav_link 'Rate a beer', new_rating_path %>
-		<%= nav_link 'Join a club', new_membership_path %>
-		<%= nav_link 'Log Out', '/signout', :method => :delete %>
-		<%= nav_link current_user, user_path(current_user) %>
-	<% end %>
-</ul>
+<%# navigation styled for Bootstrap 3.0 %>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'Home', root_path, class: 'navbar-brand' %>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <%= render 'layouts/navigation_links' %>
+      </ul>
+    </div>
+  </div>
+</nav>

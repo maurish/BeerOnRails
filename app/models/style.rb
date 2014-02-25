@@ -1,8 +1,8 @@
 class Style < ActiveRecord::Base
 	has_many :beers
-	validates :title, uniqueness: true
+	validates :name, uniqueness: true
 
 	def to_s
-		"#{title}"
+		"#{name}"
 	end
 end

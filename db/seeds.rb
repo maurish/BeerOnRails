@@ -18,10 +18,10 @@ u2 = User.create username: "mluukkai", password: "matti1", password_confirmation
 u3 = User.create username: "avihavai", password: "arto1", password_confirmation: "arto1"
 u4 = User.create username: "Paula", password: "paula1", password_confirmation: "paula1"
 
-lager = Style.create title:'Lager', description: 'This is a description for Lager beer'
-pale_ale = Style.create title:'Pale Ale', description: 'This description is for Pale Ale'
-porter = Style.create title:'porter', description: 'This description belongs to porter'
-weizen =  Style.create title:'Weizen', description: 'Weizen description over here, yo!'
+lager = Style.create name:'Lager', description: 'This is a description for Lager beer'
+pale_ale = Style.create name:'Pale Ale', description: 'This description is for Pale Ale'
+porter = Style.create name:'porter', description: 'This description belongs to porter'
+weizen =  Style.create name:'Weizen', description: 'Weizen description over here, yo!'
 
 beer1_1 = b1.beers.create :name => "Iso 3", :style => lager
 beer1_2 = b1.beers.create :name => "Karhu", :style => lager
